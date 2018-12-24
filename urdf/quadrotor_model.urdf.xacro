@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://wiki.ros.org/xacro" >
+  
+  <!-- Main quadrotor link -->
+  <xacro:macro name="quadrotor_macro"> 
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+
+<!-- Bais link of quadrotor-->
+  <link
+    name="base_Link">
+    <inertial>
+      <origin
+        xyz="0 0 -0.052"
+        rpy="1.5708 0 1.5708" />
+      <mass
+        value="0.7" />
+      <inertia
+        ixx="0.0027947"
+        ixy="0"
+        ixz="0"
+        iyy="0.00278554"
+        iyz="0"
+        izz="0.004656638" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 -0.052"
+        rpy="1.5708 0 1.5708" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/base_Link.dae" />
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/base_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<!-- Front Right Prop -->
+<link
+    name="FR_Link">
+    <inertial>
+      <origin
+        xyz="-0.003 0 0"
+        rpy="1.5708 0 -0.523599" />
+      <mass
+        value="0.007" />
+      <inertia
+        ixx="0.00002353"
+        ixy="0"
+        ixz="0"
+        iyy="0.00002353"
+        iyz="0"
+        izz="0.00004706" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.003 0 0"
+        rpy="1.57 0 -0.523599" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/FR_Link.dae" />
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/FR_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<!-- Front Right Joint -->
+  <joint
+    name="FR_Joint"
+    type="continuous">
+    <origin
+      xyz="0.0714 -0.1153345227 0.026"
+      rpy="0 0 0" />
+    <parent
+      link="base_Link" />
+    <child
+      link="FR_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+<!-- Back Left Prop -->
+  <link
+    name="BL_Link">
+    <inertial>
+      <origin
+        xyz="-0.001 -0.003 0"
+        rpy="1.5708 0 1.0472" />
+      <mass
+        value="0.007" />
+      <inertia
+        ixx="0.00002353"
+        ixy="0"
+        ixz="0"
+        iyy="0.00002353"
+        iyz="0"
+        izz="0.00004706" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.001 -0.003 0"
+        rpy="1.5708 0 1.0472" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/BL_Link.dae" />
+      </geometry>
+
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0.003 0"
+        rpy="0 -1.5708 0" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/BL_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<!-- Back Left Joint -->
+  <joint
+    name="BL_Joint"
+    type="continuous">
+    <origin
+      xyz="-0.07161128 0.1148345227 0.026"
+      rpy="0 0 0" />
+    <parent
+      link="base_Link" />
+    <child
+      link="BL_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+<!-- Back Right Prop -->
+  <link
+    name="BR_Link">
+    <inertial>
+      <origin
+        xyz="-0.002 -0.003 0"
+        rpy="1.5708 0 1.0472" />
+      <mass
+        value="0.007" />
+      <inertia
+        ixx="0.00002353"
+        ixy="0"
+        ixz="0"
+        iyy="0.00002353"
+        iyz="0"
+        izz="0.00004706" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.002 -0.003 0"
+        rpy="1.5708 0 1.0472" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/BR_Link.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/BR_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<!-- Back Right Joint -->
+  <joint
+    name="BR_Joint"
+    type="continuous">
+    <origin
+      xyz="-0.0716112686755679 -0.115430836109892 0.026"
+      rpy="0 0 0" />
+    <parent
+      link="base_Link" />
+    <child
+      link="BR_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+<!-- Front Left Prop -->
+  <link
+    name="FL_Link">
+    <inertial>
+      <origin
+        xyz="-0.002 -0.001 0"
+        rpy="1.5708 0 0" />
+      <mass
+        value="0.007" />
+      <inertia
+        ixx="0.00002353"
+        ixy="0"
+        ixz="0"
+        iyy="0.00002353"
+        iyz="0"
+        izz="0.00004706" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="-0.002 -0.001 0"
+        rpy="1.5708 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/FL_Link.dae" />
+      </geometry>
+         </visual>
+    <collision>
+      <origin
+        xyz="-0.002 -0.001 0"
+        rpy="1.5708 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quad_description/meshes/quadrotor/FL_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+<!-- Front Left Prop -->
+  <joint
+    name="FL_Joint"
+    type="continuous">
+    <origin
+      xyz="0.0712 0.114834 0.026"
+      rpy="0 0 0" />
+    <parent
+      link="base_Link" />
+    <child
+      link="FL_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  </xacro:macro>
+</robot>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://wiki.ros.org/xacro" >
+
+  <!-- Quadrotor Simple Controller Plugin -->
+
+  <xacro:macro name="quadrotor_controller" params="robot_name">
+    <gazebo>
+      <plugin name="quadrotor_plugin_force_torque" filename="/home/aminys/quad_ws/src/quad_control/plugins/build/libQuadrotor_Plugin.so"/>
+    </gazebo>
+  </xacro:macro>
+</robot>
