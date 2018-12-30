@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://wiki.ros.org/xacro" >
+
+  <!-- Motor & propller link -->
+  <xacro:macro name="motor_macro"
+    params="robot_namespace suffix direction motor_constant moment_constant parent
+            radius_rotor time_constant_up time_constant_down max_rot_velocity motor_number
+            rotor_drag_coefficient rolling_moment_coefficient color mesh mesh_scale *origin *inertia">
+
+    <joint name="motor_${motor_number}_joint" type="continuous">
+      <xacro:insert_block name="origin" />
+      <axis xyz="0 0 1" />
+      <parent link="${parent}" />
+      <child link="motor_${motor_number}" />
+    </joint>
+    
+    <!-- ***************************************************************** -->
+    <!--  needed to add motor inertia and mass -->
+    <!-- ***************************************************************** -->
+
+    <link name="motor_${motor_number}">
+      <inertial>
+        <mass value="${mass_rotor}" /> <!-- [kg] -->
+        <xacro:insert_block name="inertia" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://quadrotor_gazebo/models/meshes/quadrotor/propller/${mesh}_${direction}.dae"
+            scale="${mesh_scale}" />
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder length="0.005" radius="${radius_rotor}" /> <!-- [m] -->
+        </geometry>
+      </collision>
+    </link>
+
+  </xacro:macro>
+</robot>

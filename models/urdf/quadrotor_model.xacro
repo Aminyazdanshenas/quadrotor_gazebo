@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://wiki.ros.org/xacro" >
+
+  <!-- Main quadrotor link -->
+  <xacro:macro name="quadrotor_macro">
+    
+  </xacro:macro>
+</robot>
